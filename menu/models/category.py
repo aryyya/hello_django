@@ -3,7 +3,8 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=64)
     order = models.IntegerField(default=-1)
-    
+    visible = models.BooleanField(default=True)
+
     def __str__(self):
         return self.name
 
