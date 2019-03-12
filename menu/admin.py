@@ -2,7 +2,8 @@ from . import models
 from django.contrib import admin
 
 admin_models = [
-    models.Category,
+    models.MenuCategory,
+    models.ItemCategory,
     models.TeaItem,
     models.FoodItem,
     models.Grower,

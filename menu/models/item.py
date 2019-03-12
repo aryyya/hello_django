@@ -1,11 +1,12 @@
-from .category import Category
+from .category import ItemCategory
 from .origin import Origin
 from django.db import models
 
 class Item(models.Model):
     name = models.CharField(max_length=64)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
     description = models.CharField(max_length=64)
+    order = models.IntegerField(default=-1)
 
     def __str__(self):
         return self.name
