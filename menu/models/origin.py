@@ -9,6 +9,7 @@ class Origin(models.Model):
     longitude = models.CharField(max_length=32)
     grower = models.ForeignKey(Grower, on_delete=models.CASCADE)
     visible = models.BooleanField(default=True)
+    order = models.IntegerField(default=-1)
 
     def __str__(self):
         return f'{self.grower} ({self.city}, {self.state}, {self.country})'

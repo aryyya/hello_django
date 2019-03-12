@@ -6,8 +6,8 @@ class Item(models.Model):
     name = models.CharField(max_length=64)
     category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
     description = models.CharField(max_length=64)
-    order = models.IntegerField(default=-1)
     visible = models.BooleanField(default=True)
+    order = models.IntegerField(default=-1)
 
     def __str__(self):
         return self.name
