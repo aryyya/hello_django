@@ -4,14 +4,29 @@ from django.db import models
 from datetime import datetime
 
 class Item(models.Model):
+
+    # The name of the item.
     name = models.CharField(max_length=64)
-    translation = models.CharField(max_length=64, default='')
-    punchline = models.CharField(max_length=64, default='')
-    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
-    description = models.CharField(max_length=64)
+
+    # The visibility of the item.
     visible = models.BooleanField(default=True)
+
+    # The category of the item.
+    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
+
+    # The order number of the item (-1 for no ordering).
     order = models.IntegerField(default=-1)
+
+    # The stock level of the item.
     stock = models.CharField(max_length=16, choices=(('IN STOCK', 'In stock'), ('OUT OF STOCK', 'Out of stock'), ('RESTOCKING SOON', 'Restocking soon')), default='IN STOCK')
+
+    # The translation of the item.
+    translation = models.CharField(max_length=64, default='')
+
+    # The punchline of the item.
+    punchline = models.CharField(max_length=64, default='')
+
+    # The bartender's notes on the item.
     bartender_notes = models.TextField(default='')
 
     def __str__(self):
@@ -21,9 +36,17 @@ class Item(models.Model):
         abstract = True
 
 class TeaItem(Item):
+
+    # The origin of the item.
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
+
+    # The tasting notes of the item.
     tasting_notes = models.CharField(max_length=64, default='')
+
+    # The year of the item.
     year = models.CharField(max_length=4, default=datetime.now().year)
+
+    # The leaves of the item.
     leaves = models.CharField(max_length=64, default='')
 
 class FoodItem(Item):
