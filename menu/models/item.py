@@ -19,6 +19,7 @@ class Item(models.Model):
 
 class TeaItem(Item):
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
+    tasting_notes = models.CharField(max_length=64, default='')
 
 class FoodItem(Item):
     pass
