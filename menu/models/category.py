@@ -18,6 +18,8 @@ class MenuCategory(Category):
 
 class ItemCategory(Category):
     category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)
+    short_description = models.CharField(max_length=64, default='')
+    long_description = models.TextField(default='')
 
     class Meta:
         verbose_name_plural = 'item categories'
