@@ -6,6 +6,7 @@ from datetime import datetime
 class Item(models.Model):
     name = models.CharField(max_length=64)
     translation = models.CharField(max_length=64, default='')
+    punchline = models.CharField(max_length=64, default='')
     category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
     description = models.CharField(max_length=64)
     visible = models.BooleanField(default=True)
