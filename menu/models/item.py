@@ -1,6 +1,7 @@
 from .category import ItemCategory
 from .origin import Origin
 from django.db import models
+from datetime import datetime
 
 class Item(models.Model):
     name = models.CharField(max_length=64)
@@ -20,6 +21,7 @@ class Item(models.Model):
 class TeaItem(Item):
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
     tasting_notes = models.CharField(max_length=64, default='')
+    year = models.CharField(max_length=4, default=datetime.now().year)
 
 class FoodItem(Item):
     pass
