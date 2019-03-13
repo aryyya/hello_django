@@ -1,13 +1,8 @@
 from django.db import models
 from .grower import Grower
+from .basic import Basic
 
-class Origin(models.Model):
-
-    # The visibility of the origin.
-    visible = models.BooleanField(default=True)
-
-    # The order of the origin (-1 for no ordering).
-    order = models.IntegerField(default=-1)
+class Origin(Basic, models.Model):
 
     # The city of the origin.
     city = models.CharField(max_length=64)

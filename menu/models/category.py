@@ -1,15 +1,10 @@
 from django.db import models
+from .basic import Basic
 
-class Category(models.Model):
+class Category(Basic, models.Model):
 
     # The name of the category.
     name = models.CharField(max_length=64)
-
-    # The visibility of the category.
-    visible = models.BooleanField(default=True)
-
-    # The order number of the category (-1 for no ordering).
-    order = models.IntegerField(default=-1)
 
     def __str__(self):
         return self.name

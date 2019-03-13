@@ -1,21 +1,16 @@
 from .category import ItemCategory
 from .origin import Origin
+from .basic import Basic
 from django.db import models
 from datetime import datetime
 
-class Item(models.Model):
+class Item(Basic, models.Model):
 
     # The name of the item.
     name = models.CharField(max_length=64)
 
-    # The visibility of the item.
-    visible = models.BooleanField(default=True)
-
     # The category of the item.
     category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
-
-    # The order number of the item (-1 for no ordering).
-    order = models.IntegerField(default=-1)
 
     # The stock level of the item.
     stock = models.CharField(max_length=16, choices=(('IN STOCK', 'In stock'), ('OUT OF STOCK', 'Out of stock'), ('RESTOCKING SOON', 'Restocking soon')), default='IN STOCK')

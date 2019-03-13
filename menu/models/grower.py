@@ -1,15 +1,10 @@
 from django.db import models
+from .basic import Basic
 
-class Grower(models.Model):
+class Grower(Basic, models.Model):
 
     # The name of the grower.
     name = models.CharField(max_length=64)
-    
-    # The visibility of the grower.
-    visible = models.BooleanField(default=True)
-
-    # The order number of the grower (-1 for no ordering).
-    order = models.IntegerField(default=-1)
 
     # The notes about the grower.
     notes = models.TextField(max_length=64)
