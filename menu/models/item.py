@@ -8,6 +8,7 @@ class Item(models.Model):
     description = models.CharField(max_length=64)
     visible = models.BooleanField(default=True)
     order = models.IntegerField(default=-1)
+    stock = models.CharField(max_length=16, choices=(('IN STOCK', 'In stock'), ('OUT OF STOCK', 'Out of stock'), ('RESTOCKING SOON', 'Restocking soon')), default='IN STOCK')
 
     def __str__(self):
         return self.name
