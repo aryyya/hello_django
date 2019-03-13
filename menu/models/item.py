@@ -12,6 +12,7 @@ class Item(models.Model):
     visible = models.BooleanField(default=True)
     order = models.IntegerField(default=-1)
     stock = models.CharField(max_length=16, choices=(('IN STOCK', 'In stock'), ('OUT OF STOCK', 'Out of stock'), ('RESTOCKING SOON', 'Restocking soon')), default='IN STOCK')
+    bartender_notes = models.TextField(default='')
 
     def __str__(self):
         return self.name
