@@ -23,10 +23,10 @@ class ItemCategory(Category):
     menu_category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)
 
     # The short description of the item category.
-    short_description = models.CharField(max_length=64, default='')
+    short_description = models.CharField(max_length=64, default='', blank=True)
 
     # The long description of the item category.
-    long_description = models.TextField(default='')
+    long_description = models.TextField(default='', blank=True)
 
     class Meta:
         verbose_name_plural = 'item categories'

@@ -7,7 +7,7 @@ class Grower(Basic, models.Model):
     name = models.CharField(max_length=64)
 
     # The notes about the grower.
-    notes = models.TextField(max_length=64)
+    notes = models.TextField(max_length=64, default='', blank=True)
 
     def __str__(self):
         return self.name

@@ -16,13 +16,13 @@ class Item(Basic, models.Model):
     stock = models.CharField(max_length=16, choices=(('IN STOCK', 'In stock'), ('OUT OF STOCK', 'Out of stock'), ('RESTOCKING SOON', 'Restocking soon')), default='IN STOCK')
 
     # The translation of the item.
-    translation = models.CharField(max_length=64, default='')
+    translation = models.CharField(max_length=64, default='', blank=True)
 
     # The punchline of the item.
-    punchline = models.CharField(max_length=64, default='')
+    punchline = models.CharField(max_length=64, default='', blank=True)
 
     # The bartender's notes on the item.
-    bartender_notes = models.TextField(default='')
+    bartender_notes = models.TextField(default='', blank=True)
 
     def __str__(self):
         return self.name
@@ -36,13 +36,13 @@ class TeaItem(Item):
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
 
     # The tasting notes of the item.
-    tasting_notes = models.CharField(max_length=64, default='')
+    tasting_notes = models.CharField(max_length=64, default='', blank=True)
 
     # The year of the item.
-    year = models.CharField(max_length=4, default=datetime.now().year)
+    year = models.CharField(max_length=4, default=datetime.now().year, blank=True)
 
     # The leaves of the item.
-    leaves = models.CharField(max_length=64, default='')
+    leaves = models.CharField(max_length=64, default='', blank=True)
 
 class FoodItem(Item):
     pass
