@@ -22,7 +22,7 @@ class Origin(Basic, models.Model):
     grower_name = models.CharField(max_length=64)
 
     # The notes about the grower.
-    grower_notes = models.TextField(max_length=64, default='', blank=True)
+    grower_notes = models.TextField(default='', blank=True)
 
     def __str__(self):
         return f'{self.country}, {self.state}, {self.city} ({self.grower_name})'
