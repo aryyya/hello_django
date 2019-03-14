@@ -1,5 +1,4 @@
 from django.db import models
-from .grower import Grower
 from .basic import Basic
 
 class Origin(Basic, models.Model):
@@ -19,11 +18,14 @@ class Origin(Basic, models.Model):
     # The longitude of the origin.
     longitude = models.CharField(max_length=32)
 
-    # The grower at the origin.
-    grower = models.ForeignKey(Grower, on_delete=models.CASCADE)
+    # The name of the grower.
+    grower_name = models.CharField(max_length=64)
+
+    # The notes about the grower.
+    grower_notes = models.TextField(max_length=64, default='', blank=True)
 
     def __str__(self):
-        return f'{self.country}, {self.state}, {self.city} ({self.grower})'
+        return f'{self.country}, {self.state}, {self.city} ({self.grower_name})'
 
     class Meta:
         unique_together = ('latitude', 'longitude')

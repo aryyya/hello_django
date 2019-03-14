@@ -6,7 +6,6 @@ admin_models = [
     models.ItemCategory,
     models.TeaItem,
     models.FoodItem,
-    models.Grower,
     models.Origin
 ]
 
