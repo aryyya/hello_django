@@ -23,4 +23,7 @@ class Origin(Basic, models.Model):
     grower = models.ForeignKey(Grower, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.grower} ({self.city}, {self.state}, {self.country})'
+        return f'{self.country}, {self.state}, {self.city} ({self.grower})'
+
+    class Meta:
+        unique_together = ('latitude', 'longitude')

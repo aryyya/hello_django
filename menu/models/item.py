@@ -7,7 +7,7 @@ from datetime import datetime
 class Item(Basic, models.Model):
 
     # The name of the item.
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
 
     # The category of the item.
     category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)

@@ -4,7 +4,7 @@ from .basic import Basic
 class Grower(Basic, models.Model):
 
     # The name of the grower.
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
 
     # The notes about the grower.
     notes = models.TextField(max_length=64, default='', blank=True)

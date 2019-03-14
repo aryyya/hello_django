@@ -4,7 +4,7 @@ from .basic import Basic
 class Category(Basic, models.Model):
 
     # The name of the category.
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return self.name
