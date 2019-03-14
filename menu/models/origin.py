@@ -1,5 +1,20 @@
-from django.db import models
 from .basic import Basic
+from django.core.exceptions import ValidationError
+from django.db import models
+
+# Validators.
+
+def validate_coordinate(name, min, max):
+    def validate(coordinate):
+        try:
+            coordinate_as_float = float(coordinate)
+            if coordinate_as_float < min or coordinate_as_float > max:
+                raise ValueError
+        except ValueError:
+            raise ValidationError(f'{name} must be a number between {min} and {max}.')
+    return validate
+
+# Models.
 
 class Origin(Basic, models.Model):
 
@@ -13,10 +28,16 @@ class Origin(Basic, models.Model):
     country = models.CharField(max_length=64)
 
     # The latitude of the origin.
-    latitude = models.CharField(max_length=32)
+    latitude = models.CharField(
+        max_length=32,
+        validators=[validate_coordinate('Latitude', -90.0, +90.0)]
+    )
 
     # The longitude of the origin.
-    longitude = models.CharField(max_length=32)
+    longitude = models.CharField(
+        max_length=32,
+        validators=[validate_coordinate('Longitude', -180, +180)]
+    )
 
     # The name of the grower.
     grower_name = models.CharField(max_length=64)
