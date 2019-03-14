@@ -29,13 +29,13 @@ class Origin(Basic, models.Model):
 
     # The latitude of the origin.
     latitude = models.CharField(
-        max_length=32,
+        max_length=16,
         validators=[validate_coordinate('Latitude', -90.0, +90.0)]
     )
 
     # The longitude of the origin.
     longitude = models.CharField(
-        max_length=32,
+        max_length=16,
         validators=[validate_coordinate('Longitude', -180, +180)]
     )
 
