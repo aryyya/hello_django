@@ -32,17 +32,29 @@ class Item(Basic, models.Model):
 
 class TeaItem(Item):
 
-    # The origin of the item.
+    # The origin of the tea item.
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
 
-    # The tasting notes of the item.
+    # The tasting notes of the tea item.
     tasting_notes = models.CharField(max_length=64, default='', blank=True)
 
-    # The year of the item.
+    # The year of the tea item.
     year = models.CharField(max_length=4, default=datetime.now().year, blank=True)
 
-    # The leaves of the item.
+    # The leaves of the tea item.
     leaves = models.CharField(max_length=64, default='', blank=True)
+
+    # The bar price of the tea item.
+    price_bar = models.CharField(max_length=16, default='', blank=True)
+
+    # The bowl price of the tea item.
+    price_bowl = models.CharField(max_length=16, default='', blank=True)
+
+    # The shot price of the tea item.
+    price_shot = models.CharField(max_length=16, default='', blank=True)
+
+    # The retail price of the tea item.
+    price_retail = models.CharField(max_length=32, default='', blank=True)
 
 class FoodItem(Item):
     pass

@@ -1,18 +1,25 @@
 from .basic import Basic
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.deconstruct import deconstructible
+
 
 # Validators.
 
-def validate_coordinate(name, min, max):
-    def validate(coordinate):
+@deconstructible
+class ValidateCoordinate:
+    def __init__(self, name, min, max):
+        self.name = name
+        self.min = min
+        self.max = max
+
+    def __call__(self, coordinate):
         try:
             coordinate_as_float = float(coordinate)
-            if coordinate_as_float < min or coordinate_as_float > max:
+            if coordinate_as_float < self.min or coordinate_as_float > self.max:
                 raise ValueError
         except ValueError:
-            raise ValidationError(f'{name} must be a number between {min} and {max}.')
-    return validate
+            raise ValidationError(f'{self.name} must be a number between {self.min} and {self.max}.')
 
 # Models.
 
@@ -30,13 +37,13 @@ class Origin(Basic, models.Model):
     # The latitude of the origin.
     latitude = models.CharField(
         max_length=16,
-        validators=[validate_coordinate('Latitude', -90.0, +90.0)]
+        validators=[ValidateCoordinate('Latitude', -90.0, +90.0)]
     )
 
     # The longitude of the origin.
     longitude = models.CharField(
         max_length=16,
-        validators=[validate_coordinate('Longitude', -180, +180)]
+        validators=[ValidateCoordinate('Longitude', -180, +180)]
     )
 
     # The name of the grower.
