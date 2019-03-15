@@ -1,0 +1,71 @@
+[
+{
+  "model": "menu.category",
+  "pk": 1,
+  "fields": {
+    "visible": true,
+    "order": -1,
+    "name": "Unfermented Tea"
+  }
+},
+{
+  "model": "menu.category",
+  "pk": 2,
+  "fields": {
+    "visible": true,
+    "order": -1,
+    "name": "Matcha"
+  }
+},
+{
+  "model": "menu.menucategory",
+  "pk": 1,
+  "fields": {}
+},
+{
+  "model": "menu.itemcategory",
+  "pk": 2,
+  "fields": {
+    "menu_category": 1,
+    "short_description": "Finely ground powder of Green Tea leaves.",
+    "long_description": "The green tea plants for matcha are shade-grown for about three weeks before harvest and the stems and veins are removed in processing. During shaded growth, the plant Camellia sinensis produces more theanine and caffeine. \r\n\r\nTraditionally, Matcha powder is scooped in a special bowl called a chawan. Hot water is then added, and the mixture is whipped up to a foamy texture with a special bamboo whisk called a chasen."
+  }
+},
+{
+  "model": "menu.origin",
+  "pk": 1,
+  "fields": {
+    "visible": true,
+    "order": -1,
+    "city": "Hoshino",
+    "state": "Yame",
+    "country": "Japan",
+    "latitude": "33.7",
+    "longitude": "130.7",
+    "grower_name": "Yamaguchi Family",
+    "grower_notes": "The Yamaguchi have 29 tea cultivars growing on the hills of Hoshino. Whereas Yame is a younger tea producing region that the highly acclaimed Uji, the terroir, availability of tea cultivars and attention to detail in the handcrafting process is yielding some of the best Japanese teas we\u2019ve ever tried."
+  }
+},
+{
+  "model": "menu.teaitem",
+  "pk": 1,
+  "fields": {
+    "visible": true,
+    "order": -1,
+    "name": "Matcha #1.5",
+    "category": 2,
+    "stock": "IN STOCK",
+    "translation": "\u62b9\u8336#1.5",
+    "punchline": "Balanced, introductory.",
+    "bartender_notes": "A mixed blend of Okumidori, Saemidori, Yabukita, Tsuyuhikari, and Samidori.",
+    "origin": 1,
+    "tasting_notes": "Wheatgrass, Almond Milk",
+    "year": "",
+    "leaves": "",
+    "price_bar": "",
+    "price_bowl": "14",
+    "price_shot": "7",
+    "price_retail": ""
+  }
+}
+]
