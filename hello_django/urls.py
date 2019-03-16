@@ -14,7 +14,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class OriginSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Origin
-        fields = ('url', 'city', 'state', 'country', 'latitude', 'longitude', 'grower_name', 'grower_notes')
+        fields = ('url', 'city', 'state', 'country', 'latitude', 'longitude', 'grower_name', 'grower_notes', 'teaitem_set')
 
 class TeaItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -29,12 +29,12 @@ class FoodItemSerializer(serializers.HyperlinkedModelSerializer):
 class ItemCategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ItemCategory
-        fields = ('url', 'name', 'menu_category', 'short_description', 'long_description')
+        fields = ('url', 'name', 'menu_category', 'short_description', 'long_description', 'teaitem_set', 'fooditem_set')
 
 class MenuCategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = MenuCategory
-        fields = ('url', 'name',)
+        fields = ('url', 'name', 'itemcategory_set')
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
