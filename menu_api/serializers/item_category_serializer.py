@@ -11,6 +11,6 @@ class ItemCategorySerializer(serializers.HyperlinkedModelSerializer):
             'menu_category',
             'short_description',
             'long_description',
-            'teaitem_set',
-            'fooditem_set'
+            'tea_items',
+            'food_items'
         )

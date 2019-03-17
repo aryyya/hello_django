@@ -8,5 +8,5 @@ class MenuCategorySerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'url',
             'name',
-            'itemcategory_set'
+            'item_categories'
         )

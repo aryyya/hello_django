@@ -14,5 +14,5 @@ class OriginSerializer(serializers.HyperlinkedModelSerializer):
             'longitude',
             'grower_name',
             'grower_notes',
-            'teaitem_set'
+            'tea_items'
         )
