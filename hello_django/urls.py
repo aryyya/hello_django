@@ -19,5 +19,5 @@ urlpatterns = [
     ])),
     path('admin/', admin.site.urls),
     url(r'^menu/', include('menu_api.urls')),
-    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

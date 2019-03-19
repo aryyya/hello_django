@@ -1,7 +1,6 @@
 from rest_framework.routers import DefaultRouter
 from . import views
-
-# app_name = 'menu_api'
+from django.urls import include, path
 
 router = DefaultRouter()
 router.register(r'origins', views.OriginViewSet)
@@ -10,4 +9,6 @@ router.register(r'food-items', views.FoodItemViewSet)
 router.register(r'item-categories', views.ItemCategoryViewSet)
 router.register(r'menu-categories', views.MenuCategoryViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [
+    path(r'', include(router.urls))
+]

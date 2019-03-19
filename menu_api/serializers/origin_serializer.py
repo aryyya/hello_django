@@ -3,6 +3,8 @@ from menu.models import Origin
 
 class OriginSerializer(serializers.HyperlinkedModelSerializer):
 
+    url = serializers.HyperlinkedRelatedField(view_name='origin-detail', read_only=True)
+
     tea_items = serializers.HyperlinkedRelatedField(source='teaitem_set', view_name='teaitem-detail', read_only=True, many=True)
 
     class Meta:
