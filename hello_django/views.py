@@ -10,3 +10,9 @@ def greet(request, name):
 def get_age(request, birth_year):
     age = datetime.now().year - birth_year
     return HttpResponse( f'You are {age} years old.', content_type='text/plain',)
+
+def user_name(request, name):
+    return HttpResponse(f'name: {name}', content_type='text/plain')
+
+def user_greet(request, name):
+    return greet(request, name)
