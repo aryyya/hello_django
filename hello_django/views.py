@@ -1,8 +1,9 @@
 from datetime import datetime
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 def index(request):
-    return HttpResponse('hello_django says "Hello, world!"', content_type='text/plain')
+    return HttpResponseRedirect(reverse('greet', args=('user',)))
 
 def greet(request, name):
     return HttpResponse(f'Hello, {name}!', content_type='text/plain')

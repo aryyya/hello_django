@@ -5,11 +5,13 @@ from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path, register_converter
 
+app_name = 'hello_django'
+
 register_converter(converters.YearConverter, 'yyyy')
 
 urlpatterns = [
-    path('', views.index),
-    path('greet/<str:name>/', views.greet),
+    path('', views.index, name='root'),
+    path('greet/<str:name>/', views.greet, name='greet'),
     path('get-age/<yyyy:birth_year>/', views.get_age),
     path('user/<str:name>/', include([
         path('', views.user_name),
