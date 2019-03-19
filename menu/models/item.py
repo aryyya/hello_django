@@ -9,6 +9,9 @@ class Item(Basic, models.Model):
     # The name of the item.
     name = models.CharField(max_length=64, unique=True)
 
+    # The category of the item.
+    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
+
     # The stock level of the item.
     stock = models.CharField(max_length=16, choices=(('IN STOCK', 'In stock'), ('OUT OF STOCK', 'Out of stock'), ('RESTOCKING SOON', 'Restocking soon')), default='IN STOCK')
 
@@ -29,11 +32,8 @@ class Item(Basic, models.Model):
 
 class TeaItem(Item):
 
-    # The category of the item.
-    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE, related_name='tea_items')
-
     # The origin of the tea item.
-    origin = models.ForeignKey(Origin, on_delete=models.CASCADE, related_name='tea_items')
+    origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
 
     # The tasting notes of the tea item.
     tasting_notes = models.CharField(max_length=64, default='', blank=True)
@@ -57,6 +57,4 @@ class TeaItem(Item):
     price_retail = models.CharField(max_length=32, default='', blank=True)
 
 class FoodItem(Item):
-
-    # The category of the item.
-    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE, related_name='food_items')
+    pass

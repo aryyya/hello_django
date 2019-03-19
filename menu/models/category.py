@@ -20,7 +20,7 @@ class MenuCategory(Category):
 class ItemCategory(Category):
 
     # The menu category of the item category.
-    menu_category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE, related_name='item_categories')
+    menu_category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)
 
     # The short description of the item category.
     short_description = models.CharField(max_length=64, default='', blank=True)

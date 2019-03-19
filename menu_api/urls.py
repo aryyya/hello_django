@@ -1,6 +1,8 @@
 from rest_framework.routers import DefaultRouter
 from . import views
 
+# app_name = 'menu_api'
+
 router = DefaultRouter()
 router.register(r'origins', views.OriginViewSet)
 router.register(r'tea-items', views.TeaItemViewSet)
