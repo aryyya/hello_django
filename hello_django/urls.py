@@ -1,17 +1,16 @@
+from . import converters
+from . import views
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.http import HttpResponse
-from django.urls import path
+from django.urls import path, register_converter
 
-def index(request):
-    return HttpResponse('hello_django says "Hello, world!"')
-
-def greet(request, name):
-    return HttpResponse(f'Hello, {name}!')
+register_converter(converters.YearConverter, 'yyyy')
 
 urlpatterns = [
-    path('', index),
-    path('greet/<str:name>', greet),
+    path('', views.index),
+    path('greet/<str:name>', views.greet),
+    path('get-age/<yyyy:birth_year>', views.get_age),
     path('admin/', admin.site.urls),
     url(r'^menu/', include('menu_api.urls')),
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework'))
