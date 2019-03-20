@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Pizza, Topping
 
-# Register your models here.
+admin_models = [
+    Pizza,
+    Topping
+]
+
+for model in admin_models:
+    admin.site.register(model)

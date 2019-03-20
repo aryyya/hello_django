@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'menu',
-    'menu_api'
+    'menu_api',
+    'greeter'
 ]
 
 MIDDLEWARE = [
