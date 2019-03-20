@@ -11,8 +11,10 @@ register_converter(converters.YearConverter, 'yyyy')
 
 urlpatterns = [
     path('', views.index, name='root'),
-    path('greet/<str:name>/', views.greet, name='greet'),
+    path('greet/<str:name>/', views.greet),
     path('get-age/<yyyy:birth_year>/', views.get_age),
+    path('standard-greeter/', include('greeter.urls', namespace='standard-greeter')),
+    path('special-greeter/', include('greeter.urls', namespace='special-greeter')),
     path('user/<str:name>/', include([
         path('', views.user_name),
         path('greet/', views.user_greet)
