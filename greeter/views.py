@@ -14,13 +14,15 @@ def music(request):
     musician_query = request.GET.get('musician', '')
     band_query = request.GET.get('band', '')
 
-    if musician_query == '' or band_query == '':
-        return HttpResponseBadRequest('Error: Must provide query parameters "musician" and "band".')
+    if musician_query == '':
+        return HttpResponseBadRequest('Error: Must provide query parameter "musician".')
+    if band_query == '':
+        return HttpResponseBadRequest('Error: Must provide query parameter "band".')
 
     try:
-        member = Member.objects.get(musician__name=musician_query, band__name=band_query)
+        member = Member.objects.get(musician__name__iexact=musician_query, band__name__iexact=band_query)
     except ObjectDoesNotExist:
-        return HttpResponseNotFound(f'Error: No information exists for {query["musician"]} from {query["band"]}.')
+        return HttpResponseNotFound(f'Error: No information exists for {musician_query} from {band_query}.')
 
     musician = member.musician
     band = member.band
