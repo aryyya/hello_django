@@ -50,3 +50,7 @@ class Band(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def intro(self):
+        return f'{self.name} is a {self.genre} group with {self.member_set.count()} members.'
