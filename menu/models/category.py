@@ -9,7 +9,7 @@ class Category(Basic, models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
+    class Meta(Basic.Meta):
         verbose_name_plural = 'categories'
 
 class MenuCategory(Category):
