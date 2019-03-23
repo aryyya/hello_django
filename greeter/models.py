@@ -51,6 +51,10 @@ class Band(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        print(f'{self.name} is a cool band!')
+        super().save(*args, **kwargs)
+
     @property
     def intro(self):
         return f'{self.name} is a {self.genre} group with {self.member_set.count()} members.'
