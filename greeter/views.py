@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseNotFound
 from django.urls import reverse
-from .models import Member
+from .models import Member, Band, Musician
 from django.core.exceptions import ObjectDoesNotExist
 
 def help(request):
@@ -28,3 +28,23 @@ def music(request):
     band = member.band
 
     return HttpResponse(f'{musician.name} played {musician.instrument} in the band {band.name}, which had {band.member_set.count() - 1} other members.')
+
+def band(request, band):
+    try:
+        band = Band.objects.get(name__iexact=band)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound(f'Error, no information exists for {band}.')
+
+    musicians = Musician.objects.filter(member__band=band)
+    if len(musicians) == 0:
+        return HttpResponseNotFound(f'Error, there are no members in {band}.')
+
+    musician_names = []
+    for musician in musicians:
+        musician_names.append(musician.name)
+    musician_names = ', '.join(musician_names)
+
+    return HttpResponse(f'\
+      <div>Band: {band.name}</div>\
+      <div>Members: {musician_names}</div>\
+    ')
