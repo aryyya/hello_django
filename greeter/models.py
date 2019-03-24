@@ -23,7 +23,8 @@ class Musician(models.Model):
         ('drums', 'Drums'),
         ('vocals', 'Vocals'),
         ('brass', 'Brass'),
-        ('piano', 'Piano')
+        ('piano', 'Piano'),
+        ('harmonica', 'Harmonica')
     ))
 
     band = models.ManyToManyField('Band', through='Member')

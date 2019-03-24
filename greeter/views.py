@@ -31,7 +31,7 @@ def band_list(request):
 
     band_names = []
     for band in bands:
-        band_names.append(f'<li><a href="band/{band.name}">{band.name}</a></li>')
+        band_names.append(f'<li><a href="band/{band.name.replace(" ", "%20")}">{band.name}</a></li>')
     band_names = "".join(band_names)
 
     return HttpResponse(f'<ul>{band_names}</ul>')
