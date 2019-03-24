@@ -7,9 +7,6 @@ from django.core.exceptions import ObjectDoesNotExist
 def help(request):
     return HttpResponseRedirect(reverse('greeter:greet', args=('user',), current_app=request.resolver_match.namespace))
 
-def greet(request, name):
-    return HttpResponse(f'Hello, {name}!')
-
 def music(request):
     musician_query = request.GET.get('musician', '')
     band_query = request.GET.get('band', '')
@@ -29,7 +26,17 @@ def music(request):
 
     return HttpResponse(f'{musician.name} played {musician.instrument} in the band {band.name}, which had {band.member_set.count() - 1} other members.')
 
-def band(request, band):
+def band_list(request):
+    bands = Band.objects.all()
+
+    band_names = []
+    for band in bands:
+        band_names.append(f'<li><a href="band/{band.name}">{band.name}</a></li>')
+    band_names = "".join(band_names)
+
+    return HttpResponse(f'<ul>{band_names}</ul>')
+
+def band_info(request, band):
     try:
         band = Band.objects.get(name__iexact=band)
     except ObjectDoesNotExist:

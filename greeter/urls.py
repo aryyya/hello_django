@@ -6,6 +6,6 @@ app_name = 'greeter'
 urlpatterns = [
     path('help', views.help),
     path('music', views.music, name='music'),
-    path('<str:name>', views.greet, name='greet'),
-    path('band/<str:band>', views.band, name='band')
+    path('band', views.band_list, name='band-list'),
+    path('band/<str:band>', views.band_info, name='band-info')
 ]
