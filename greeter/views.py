@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseNotFound
-from django.urls import reverse
 from .models import Member, Band, Musician
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import F
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseNotFound
+from django.shortcuts import render
+from django.urls import reverse
 
 def help(request):
     return HttpResponseRedirect(reverse('greeter:greet', args=('user',), current_app=request.resolver_match.namespace))
@@ -51,7 +52,11 @@ def band_info(request, band):
         musician_names.append(musician.name)
     musician_names = ', '.join(musician_names)
 
+    band.view_count += 1
+    band.save()
+
     return HttpResponse(f'\
       <div>Band: {band.name}</div>\
       <div>Members: {musician_names}</div>\
+      <div>Views: {band.view_count}</div>\
     ')
