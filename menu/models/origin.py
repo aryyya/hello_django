@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.deconstruct import deconstructible
 
-
 # Validators.
 
 @deconstructible
@@ -43,7 +42,7 @@ class Origin(Basic, models.Model):
     # The longitude of the origin.
     longitude = models.CharField(
         max_length=16,
-        validators=[ValidateCoordinate('Longitude', -180, +180)]
+        validators=[ValidateCoordinate('Longitude', -180.0, +180.0)]
     )
 
     # The name of the grower.
@@ -54,6 +53,10 @@ class Origin(Basic, models.Model):
 
     def __str__(self):
         return f'{self.country}, {self.state}, {self.city} ({self.grower_name})'
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     class Meta:
         unique_together = ('latitude', 'longitude')
