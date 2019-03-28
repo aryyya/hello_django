@@ -6,7 +6,8 @@ admin_models = [
     models.ItemCategory,
     models.TeaItem,
     models.FoodItem,
-    models.Origin
+    models.Origin,
+    models.Image
 ]
 
 for model in admin_models:

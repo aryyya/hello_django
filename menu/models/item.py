@@ -1,6 +1,7 @@
 from .category import ItemCategory
 from .origin import Origin
 from .basic import Basic
+from .image import Image
 from django.db import models
 from datetime import datetime
 
@@ -23,6 +24,8 @@ class Item(Basic, models.Model):
 
     # The bartender's notes on the item.
     bartender_notes = models.TextField(default='', blank=True)
+
+    images = models.ForeignKey(Image, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

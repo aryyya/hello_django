@@ -1,9 +1,10 @@
 from datetime import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponseRedirect(reverse('greet', args=('user',)))
+    return render(request, 'index.html')
 
 def greet(request, name):
     return HttpResponse(f'Hello, {name}!', content_type='text/plain')
